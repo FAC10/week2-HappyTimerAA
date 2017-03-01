@@ -1,5 +1,11 @@
-test('add(1,1) should equal 2', function(assert) {
-  var result = add(1, 1); //no change/coins just an empty array
-  var expected = 2;
-  assert.deepEqual(result, expected);
-}); // use deepEqual for arrays see: https://api.qunitjs.com/deepEqual/
+test('when startTimer function is run, does milliseconds incriment', function(assert) {
+  var expected = milliseconds + 1;
+  var result = startTimer();
+  assert.equal(result, expected, 'millisecond incremented by one');
+});
+
+test('when milliseconds reaches 100 it should reset to 00', function(assert) {
+  var expected = milliseconds + 1;
+  var result = startTimer();
+  assert.equal(result, expected, 'millisecond reset to 00');
+});
