@@ -5,5 +5,11 @@ var hours = 00;
 
 function startTimer() {
   milliseconds++;
-  console.log(milliseconds)
+  if (milliseconds <=99){
+    return milliseconds;
+  }
+  if (milliseconds > 99){
+    milliseconds = 0;
+    return milliseconds;
+  }
 }
