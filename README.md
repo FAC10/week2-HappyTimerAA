@@ -33,3 +33,10 @@ We are creating the stopwatch for a software developer who wants to accurately p
 4. Use TDD methodology and ping pong (i.e write tests before writing code)
 
 ## Interesting Stuff We have Learnt
+
+ **Asynchronous Testing**
+
+ When testing asynchronous features such as setTimeout() and setInterval(), you need to use asynchronous testing
+
+ [Test Asynchronous Code](https://www.sitepoint.com/test-asynchronous-code-qunit/)
+[Asynchronous testing](https://code.tutsplus.com/tutorials/how-to-test-your-javascript-code-with-qunit--net-9077)
