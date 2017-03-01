@@ -1,0 +1,32 @@
+body {
+  background: url(images/clock.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  text-align: center;
+  font-family: Orbitron;
+  font-size: 30px;
+}
+
+button {
+    background-color: transparent;
+    /*-moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius:6px;*/
+    border: none;
+    padding: 10px;
+    color: none;
+    font-family: 'Orbitron';
+    font-size: 20px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+button:hover {
+ color: rgba(255, 255, 255, 1);
+ }
+
+ main {
+   margin-top: 10em;
+ }
