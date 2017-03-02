@@ -1,21 +1,25 @@
 var timeDisplay = document.getElementById('timeDisplay');
     button_start = document.getElementById('button_start');
     button_reset = document.getElementById('button_reset');
-    interval = 0;
+    button_stop = document.getElementById('button_stop');
     startTimeMs = 0;
     currentTimeMs = 0;
+    intervalStartStop = 0;
 
 button_start.onclick = function() {
-  setInterval(function(){
+  intervalStartStop = setInterval(function(){
     startTimer();
   }, 10);
 }
 
 button_reset.onclick = function() {
-  clearInterval();
   timeDisplay.innerHTML = '00:00:00:00';
   startTimeMs = 0;
   currentTimeMs = 0;
+}
+
+button_stop.onclick = function() {
+  clearInterval(intervalStartStop);
 }
 
 function startTimer() {
