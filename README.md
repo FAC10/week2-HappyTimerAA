@@ -40,3 +40,7 @@ We are creating the stopwatch for a software developer who wants to accurately p
 
  [Test Asynchronous Code](https://www.sitepoint.com/test-asynchronous-code-qunit/)
 [Asynchronous testing](https://code.tutsplus.com/tutorials/how-to-test-your-javascript-code-with-qunit--net-9077)
+
+**Testing Anonymous Functions**
+
+**Date.now() vs setInterval()**

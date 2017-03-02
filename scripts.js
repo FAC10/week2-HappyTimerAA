@@ -2,10 +2,19 @@ var hours = 00;
     minutes = 00;
     seconds = 00;
     milliseconds = 00;
+    millisecondsDisplay = document.getElementById('milliseconds');
+    secondsDisplay = document.getElementById('seconds');
+    minutesDisplay = document.getElementById('minutes');
+    hoursDisplay = document.getElementById('hours');
 
 function startTimer() {
   milliseconds++;
-  if (milliseconds <=99){
+
+  // if (milliseconds < 10){
+  //   millisecondsDisplay.innerHTML = '0' + milliseconds;
+  // }
+
+  if (milliseconds <= 99){
     return milliseconds;
   }
   if (milliseconds > 99){
