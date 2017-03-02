@@ -53,10 +53,10 @@ test('when minutes reach 60, hours should increment by one', function(assert) {
 });
 
 
-// test('when startTimer runs, document.getElementById('milliseconds') should update', function(assert) {
-//
-//   assert.equal(result, expected, 'hours incremented');
-// });
+test('when startTimer runs, document.getElementById('milliseconds') should update', function(assert) {
+
+  assert.equal(result, expected, 'hours incremented');
+});
 //
 // asyncTest('after one second passes, seconds should equal 1', function() {
 //         setTimeout(function() {
