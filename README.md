@@ -8,10 +8,10 @@
 
 We are creating the stopwatch for a software developer who wants to accurately predict how long a coding task takes to complete. The developer needs the following:
 
-- [ ] I can press a start button, in order to start a timer
-- [ ] I can press a stop button, in order to stop the timer at how much time has passed since start
-- [ ] I can press a reset button, in order to stop the timer and reset the displayed time to 00:00:00:00
-- [ ] I can see the timer's current time in hours, seconds, minutes and milliseconds
+- [x] I can press a start button, in order to start a timer
+- [x] I can press a stop button, in order to stop the timer at how much time has passed since start
+- [x] I can press a reset button, in order to stop the timer and reset the displayed time to 00:00:00:00
+- [x] I can see the timer's current time in hours, seconds, minutes and milliseconds
 
 **Stretch Goals**
 
@@ -43,9 +43,22 @@ We are creating the stopwatch for a software developer who wants to accurately p
 
 **onclick functions vs addEventListener**
 
+In general, apparently using addEventListener is preferable to using onclick functions.
+
 **Date.now() vs setInterval()**
 
 At first we were going to use setInterval() to get the time, but we soon realised this wasn't the best way. setInterval() pushes things to the event loop, and was an easy way to introduce lag to the timer. Instead we calculated the time past using Date.now(). We calculated the difference between when the timer was started and the current time, then got the time from this.
 
 // var d = new Date();
-// (d.getHours()*60*60*1000) + (d.getMinutes()*60*1000) + (d.getSeconds()*1000) + d.getMilliseconds();
+// (d.getHours()*60*60*1000) + (d.getMinutes()*60*1000) + (d.getSeconds()*1000) + d.getMilliseconds());
+
+**Revert to previous commit**
+
+At one point we had to revert to a previous commit. There are two ways to do this:
+
+1. git checkout (commit id)
+2. git push -f origin  commit id: master (this deletes previous commits so avoid)
+
+**Referential Transparency**
+
+An additional property of pure functions is referential transparency. This is a rather complex term with a simple meaning: given the same inputs, the output is always the same.
