@@ -62,3 +62,7 @@ At one point we had to revert to a previous commit. There are two ways to do thi
 **Referential Transparency**
 
 An additional property of pure functions is referential transparency. This is a rather complex term with a simple meaning: given the same inputs, the output is always the same.
+
+**Variable Names**
+
+When we wrote the code we didn't use the best variable names. For example, startTimer() doesn't actually start the timer, and some of our function names didn't have a verb in them. 
