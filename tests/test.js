@@ -4,6 +4,24 @@ test('test to see if QUnit is working', function(assert) {
   assert.equal(result, expected, 'test');
 });
 
+QUnit.test( "When startButton is run, startTimeMs should equal 0", function( assert ) {
+  var done = assert.async();
+  startButton();
+  setTimeout(function() {
+    assert.ok(startTimeMs === 0);
+    done();
+  },10);
+});
+
+QUnit.test( "When startButton is run, startTimeMs should equal 0", function( assert ) {
+  var done = assert.async();
+  startButton();
+  setTimeout(function() {
+    assert.ok(startTimeMs === 0);
+    done();
+  },10);
+});
+
 test('stopButton function should return false', function(assert) {
   var expected = false;
   var result = stopButton();
@@ -57,15 +75,6 @@ QUnit.test( "When startButton is run, firstStart should be greater than 0", func
 
 QUnit.test('When startTimer is run, timeDiff is > -1', function(){
     ok(startTimer(), 'timeDiff is > -1')
-});
-
-QUnit.test( "When startButton is run, startTimeMs should equal 0", function( assert ) {
-  var done = assert.async();
-  startButton();
-  setTimeout(function() {
-    assert.ok(startTimeMs === 0);
-    done();
-  },10);
 });
 
 QUnit.test('toReadable should return ms2sf should have a length of 2', function(assert) {
