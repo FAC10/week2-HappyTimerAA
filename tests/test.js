@@ -1,53 +1,50 @@
-test('when startTimer function is run, does milliseconds incriment', function(assert) {
-  var expected = milliseconds + 1;
-  var result = startTimer();
-  assert.equal(result, expected, 'millisecond incremented by one');
+test('test to see if QUnit is working', function(assert) {
+  var expected = 2;
+  var result = 1 +1;
+  assert.equal(result, expected, 'test');
 });
 
-test('when milliseconds reach 100 it should reset to 00', function(assert) {
-  if (milliseconds > 99) {
-    var expected = 0;
-    var result = startTimer();
-  }
-  assert.equal(result, expected, 'millisecond reset to 00');
+test('stopButton function should return false', function(assert) {
+  var expected = false;
+  var result = stopButton();
+  assert.equal(result, expected, 'stopButton returns false');
 });
 
-test('when milliseconds reach 100 seconds should increment', function(assert) {
-  if (milliseconds > 99) {
-    var expected = seconds++;
-    var result = startTimer();
-  }
-  assert.equal(result, expected, 'seconds incremented');
+test('resetButton function should return false', function(assert) {
+  var expected = false;
+  var result = resetButton();
+  assert.equal(result, expected, 'resetButton returns false');
 });
 
-test('when seconds reach 60 it should reset to 00', function(assert) {
-  if (seconds > 59) {
-    var expected = 0;
-    var result = startTimer();
-  }
-  assert.equal(result, expected, 'second reset to 00');
+test('startButton function should return true', function(assert) {
+  var expected = true;
+  var result = startButton();
+  assert.equal(result, expected, 'startButton returns true');
 });
 
-test('when seconds reach 60, minutes should increment by one', function(assert) {
-    if (seconds > 59) {
-      var expected = minutes++;
-      var result = startTimer();
-    }
-  assert.equal(result, expected, 'minutes incremented');
+test('getStopTime function should return current date', function(assert) {
+  var expected = Date.now();
+  var result = getStopTime();
+  assert.equal(result, expected, 'getStopTime returns date');
 });
 
-test('when minutes reach 60 it should reset to 00', function(assert) {
-  if (minutes > 59) {
-    var expected = 0;
-    var result = startTimer();
-  }
-  assert.equal(result, expected, 'minutes reset to 00');
+test('getCurrentTime function should return current date', function(assert) {
+  var expected = Date.now();
+  var result = getCurrentTime();
+  assert.equal(result, expected, 'getCurrentTime returns date');
 });
 
-test('when minutes reach 60, hours should increment by one', function(assert) {
-  if (minutes > 59) {
-    var expected = hours++;
-    var result = startTimer();
-  }
-  assert.equal(result, expected, 'hours incremented');
+test('firstStartTimer function should return current date', function(assert) {
+  var expected = Date.now();
+  var result = firstStartTimer();
+  assert.equal(result, expected, 'firstStartTimer returns date');
+});
+
+QUnit.test( "When startButton is run, firstStart should be greater than 0", function( assert ) {
+  var done = assert.async();
+  startButton();
+  setTimeout(function() {
+    assert.ok(firstStart>0);
+    done();
+  },10000);
 });
