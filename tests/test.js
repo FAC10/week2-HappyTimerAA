@@ -28,6 +28,12 @@ test('getStopTime function should return current date', function(assert) {
   assert.equal(result, expected, 'getStopTime returns date');
 });
 
+test('getStartTime function should return current date', function(assert) {
+  var expected = Date.now();
+  var result = getStartTime();
+  assert.equal(result, expected, 'getStartTime returns date');
+});
+
 test('getCurrentTime function should return current date', function(assert) {
   var expected = Date.now();
   var result = getCurrentTime();
@@ -46,5 +52,25 @@ QUnit.test( "When startButton is run, firstStart should be greater than 0", func
   setTimeout(function() {
     assert.ok(firstStart>0);
     done();
-  },10000);
+  },10);
+});
+
+QUnit.test('When startTimer is run, timeDiff is > -1', function(){
+    ok(startTimer(), 'timeDiff is > -1')
+});
+
+QUnit.test('toReadable should return ms2sf should have a length of 2', function(assert) {
+  var expected = 2;
+  var result = toReadable();
+  assert.equal(result, expected, 'ms2sf has a length of 2');
+});
+
+
+QUnit.test( "When startButton is run, startTimeMs should equal 0", function( assert ) {
+  var done = assert.async();
+  startButton();
+  setTimeout(function() {
+    assert.ok(startTimeMs === 0);
+    done();
+  },10);
 });

@@ -41,8 +41,11 @@ We are creating the stopwatch for a software developer who wants to accurately p
  [Test Asynchronous Code](https://www.sitepoint.com/test-asynchronous-code-qunit/)
 [Asynchronous testing](https://code.tutsplus.com/tutorials/how-to-test-your-javascript-code-with-qunit--net-9077)
 
-**Testing Anonymous Functions**
+**onclick functions vs addEventListener**
 
 **Date.now() vs setInterval()**
 
-At first we were going to use setInterval() to get the time, but we soon realised this wasn't the best way. setInterval() pushes things to the event loop, and was an easy way to introduce lag to the timer. Instead we calculated the time past using Date.now(). We calculated the difference between when the timer was started and the current time, then got the time from this. 
+At first we were going to use setInterval() to get the time, but we soon realised this wasn't the best way. setInterval() pushes things to the event loop, and was an easy way to introduce lag to the timer. Instead we calculated the time past using Date.now(). We calculated the difference between when the timer was started and the current time, then got the time from this.
+
+// var d = new Date();
+// (d.getHours()*60*60*1000) + (d.getMinutes()*60*1000) + (d.getSeconds()*1000) + d.getMilliseconds();

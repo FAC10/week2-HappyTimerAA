@@ -1,5 +1,5 @@
 
-var   timeDisplay = document.getElementById('timeDisplay');
+var  timeDisplay = document.getElementById('timeDisplay');
 var  button_start = document.getElementById('button_start');
 var  button_reset = document.getElementById('button_reset');
 var  button_stop = document.getElementById('button_stop');
@@ -19,40 +19,40 @@ function resetButton() {
     currentTimeMs = 0;
     timeGone = 0;
     running = false;
+    return running;
 }
 
 function firstStartTimer (){
     firstStart = Date.now()
-    console.log("first"+firstStart);
+    return firstStart;
 }
 
 function getStartTime (){
-    startTimeMs = Date.now()
+    startTimeMs = Date.now();
+    return startTimeMs;
 }
 
 function startButton() {
   if (running !== true){
     clearInterval(intervalStartStop);
-    console.log("firstStartTime"+firstStart);
-    console.log("stopTime"+stopTimeMs);
-    console.log("startTimeMs"+startTimeMs);
     if (firstStart === 0) {
         firstStartTimer ();
     } else {
         getStartTime ()
         timeGone += startTimeMs - stopTimeMs;
-        console.log("helloooo?"+timeGone)
     }
 
     intervalStartStop = setInterval(function() {
         startTimer();
     }, 10);
     running = true;
+    return running;
   };
 }
 
 function getStopTime(){
   stopTimeMs = Date.now();
+  return stopTimeMs;
 }
 
 function stopButton() {
@@ -68,12 +68,14 @@ button_stop.addEventListener('click', stopButton);
 
 function getCurrentTime(){
   currentTimeMs = Date.now();
+  return currentTimeMs;
 }
 
 function startTimer() {
     getCurrentTime();
     var timeDiff = (currentTimeMs - (firstStart + timeGone)) > 0 ? (currentTimeMs - (firstStart + timeGone)) : ((firstStart + timeGone) - currentTimeMs);
     toReadable(timeDiff);
+    return timeDiff;
 }
 
 function toReadable(timeDiff){
@@ -87,8 +89,5 @@ function toReadable(timeDiff){
     mins = ('00' + mins).slice(-2);
     hours = ('00' + hours).slice(-2);
     timeDisplay.innerHTML = hours + ':' + mins + ':' + sec + ':' + ms2sf;
+    return ms2sf.length;
 };
-
-
-// var d = new Date();
-// (d.getHours()*60*60*1000) + (d.getMinutes()*60*1000) + (d.getSeconds()*1000) + d.getMilliseconds();
