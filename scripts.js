@@ -5,39 +5,59 @@ var   timeDisplay = document.getElementById('timeDisplay');
       button_stop = document.getElementById('button_stop');
       currentTimeMs = 0;
       stopTimeMs = 0;
+      firstStart = 0
       startTimeMs = 0;
       timeGone = 0;
       intervalStartStop = 0;
-
       running = false;
 
-function startButton() {
+function resetButton() {
     clearInterval(intervalStartStop);
-    console.log(startTimeMs)
-    var d = new Date();
-    if (startTimeMs === 0) {
-        startTimeMs = (d.getHours() * 60 * 60 * 1000) + (d.getMinutes() * 60 * 1000) + (d.getSeconds() * 1000) + d.getMilliseconds();
+    timeDisplay.innerHTML = '00:00:00:00';
+    firstStart = 0;
+    startTimeMs = 0;
+    currentTimeMs = 0;
+    timeGone = 0;
+    running = false;
+}
+
+function firstStartTimer (){
+    firstStart = Date.now()
+    console.log("first"+firstStart);
+}
+
+function getStartTime (){
+    startTimeMs = Date.now()
+}
+
+function startButton() {
+  if (running !== true){
+    clearInterval(intervalStartStop);
+    console.log("firstStartTime"+firstStart);
+    console.log("stopTime"+stopTimeMs);
+    console.log("startTimeMs"+startTimeMs);
+    if (firstStart === 0) {
+        firstStartTimer ();
+    } else {
+        getStartTime ()
+        timeGone += startTimeMs - stopTimeMs;
+        console.log("helloooo?"+timeGone)
     }
 
     intervalStartStop = setInterval(function() {
         startTimer();
     }, 10);
     running = true;
+  };
 }
 
-function resetButton() {
-    clearInterval(intervalStartStop);
-    timeDisplay.innerHTML = '00:00:00:00';
-    startTimeMs = 0;
-    currentTimeMs = 0;
-    running = false;
+function getStopTime(){
+  stopTimeMs = Date.now();
 }
 
 function stopButton() {
     clearInterval(intervalStartStop);
-    var d = new Date();
-    stopTimeMs = (d.getHours() * 60 * 60 * 1000) + (d.getMinutes() * 60 * 1000) + (d.getSeconds() * 1000) + d.getMilliseconds();
-    console.log(stopTimeMs);
+    getStopTime();
     running = false;
     return running;
 }
@@ -46,10 +66,13 @@ button_start.addEventListener('click', startButton);
 button_reset.addEventListener('click', resetButton);
 button_stop.addEventListener('click', stopButton);
 
+function getCurrentTime(){
+  currentTimeMs = Date.now();
+}
+
 function startTimer() {
-    var d = new Date();
-    currentTimeMs = (d.getHours() * 60 * 60 * 1000) + (d.getMinutes() * 60 * 1000) + (d.getSeconds() * 1000) + d.getMilliseconds();
-    var timeDiff = (currentTimeMs - startTimeMs) > 0 ? (currentTimeMs - startTimeMs) : (startTimeMs - currentTimeMs);
+    getCurrentTime();
+    var timeDiff = (currentTimeMs - (firstStart + timeGone)) > 0 ? (currentTimeMs - (firstStart + timeGone)) : ((firstStart + timeGone) - currentTimeMs);
     toReadable(timeDiff);
 }
 
@@ -59,13 +82,14 @@ function toReadable(timeDiff){
     var mins = ((timeDiff - ms - (sec * 1000)) / 60000) % 60; // remaining minutes (ms/1000 /60)
     var hours = ((timeDiff - ms - (sec * 1000) - (mins * 60000)) / 3600000); // remaining hours (ms/1000 /60 /60)
     var ms2sf = Math.round(ms / 10);
-
     ms2sf = ('00' + ms2sf).slice(-2);
     sec = ('00' + sec).slice(-2);
     mins = ('00' + mins).slice(-2);
     hours = ('00' + hours).slice(-2);
-
     timeDisplay.innerHTML = hours + ':' + mins + ':' + sec + ':' + ms2sf;
 };
 
 })(window)
+
+// var d = new Date();
+// (d.getHours()*60*60*1000) + (d.getMinutes()*60*1000) + (d.getSeconds()*1000) + d.getMilliseconds();
