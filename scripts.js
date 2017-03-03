@@ -11,34 +11,48 @@ var  timeGone = 0;
 var  intervalStartStop = 0;
 var  running = false;
 
-function resetButton() {
-    clearInterval(intervalStartStop);
-    timeDisplay.innerHTML = '00:00:00:00';
-    firstStart = 0;
-    startTimeMs = 0;
-    currentTimeMs = 0;
-    timeGone = 0;
-    running = false;
-    return running;
-}
+button_start.addEventListener('click', startButton);
+button_reset.addEventListener('click', resetButton);
+button_stop.addEventListener('click', stopButton);
 
+
+// Records the first time the Start button has been pressed.
+// This is out initial reference point.
 function firstStartTimer (){
-    firstStart = Date.now()
+    firstStart = Date.now();
     return firstStart;
-}
+};
 
+// The setInterval runs the code to constantly compare the current time with the reference time ie var firstStart.
+function getCurrentTime(){
+  currentTimeMs = Date.now();
+  return currentTimeMs;
+};
+
+// Records when the stop button was pressed.
+// This point in time will be used to figure out how long the stopwatch was not in use.
+function getStopTime(){
+  stopTimeMs = Date.now();
+  return stopTimeMs;
+};
+
+// Records when the start button was pressed, all the times AFTER the first ever pressing on the start button.
+// This point in time will be used with the variable 'stopTimeMs' to figure out how long the stopwatch was not in use.
 function getStartTime (){
     startTimeMs = Date.now();
     return startTimeMs;
-}
+};
 
+// This function is invoked when the start button is pressed.
+// It in turn invokes the startTimer() function.
+// timeGone is the period of time the stopwatch was not in use. This time is added to our variable 'firstStart'.
 function startButton() {
   if (running !== true){
     clearInterval(intervalStartStop);
     if (firstStart === 0) {
         firstStartTimer ();
     } else {
-        getStartTime ()
+        getStartTime ();
         timeGone += startTimeMs - stopTimeMs;
     }
 
@@ -48,36 +62,40 @@ function startButton() {
     running = true;
     return running;
   };
-}
+};
 
-function getStopTime(){
-  stopTimeMs = Date.now();
-  return stopTimeMs;
-}
-
+// Stops the setInterval from running.
 function stopButton() {
     clearInterval(intervalStartStop);
     getStopTime();
     running = false;
     return running;
-}
+};
 
-button_start.addEventListener('click', startButton);
-button_reset.addEventListener('click', resetButton);
-button_stop.addEventListener('click', stopButton);
+// Resets all variables and display.
+function resetButton() {
+    clearInterval(intervalStartStop);
+    timeDisplay.innerHTML = '00:00:00:00';
+    firstStart = 0;
+    startTimeMs = 0;
+    currentTimeMs = 0;
+    timeGone = 0;
+    running = false;
+    return running;
+};
 
-function getCurrentTime(){
-  currentTimeMs = Date.now();
-  return currentTimeMs;
-}
-
+// Compares the current time with a reference time and this period of time which is the amount of time
+// the stopwatch has been running, is displayed in the browser.
+// The if statement ensures that the difference is always positive.
 function startTimer() {
     getCurrentTime();
     var timeDiff = (currentTimeMs - (firstStart + timeGone)) > 0 ? (currentTimeMs - (firstStart + timeGone)) : ((firstStart + timeGone) - currentTimeMs);
     toReadable(timeDiff);
     return timeDiff;
-}
+};
 
+// Converts our time into a readable form i.e. hours:mins:secs:milliseconds.
+// slice ensures that 1 seconds is displayed as '01' and 10 seconds is displayed as '10'.
 function toReadable(timeDiff){
     var ms = timeDiff % 1000; // remaining milliseconds
     var sec = (timeDiff - ms) / 1000 % 60; // remaining seconds (ms/1000)
