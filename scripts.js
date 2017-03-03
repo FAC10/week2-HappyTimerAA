@@ -4,9 +4,9 @@ var  button_start = document.getElementById('button_start');
 var  button_reset = document.getElementById('button_reset');
 var  button_stop = document.getElementById('button_stop');
 var  currentTimeMs = 0;
-var  stopTimeMs = 0
-var  firstStart = 0;
-var  startTimeMs = 0;
+var  stoppedTimeMS = 0
+var  initialTimeMS = 0;
+var  resumedTimeMS = 0;
 var  timeGone = 0;
 var  intervalStartStop = 0;
 var  running = false;
@@ -14,32 +14,32 @@ var  running = false;
 function resetButton() {
     clearInterval(intervalStartStop);
     timeDisplay.innerHTML = '00:00:00:00';
-    firstStart = 0;
-    startTimeMs = 0;
+    initialTimeMS = 0;
+    resumedTimeMS = 0;
     currentTimeMs = 0;
     timeGone = 0;
     running = false;
     return running;
 }
 
-function firstStartTimer (){
-    firstStart = Date.now()
-    return firstStart;
+function startTime (){
+    initialTimeMS = Date.now()
+    return initialTimeMS;
 }
 
-function getStartTime (){
-    startTimeMs = Date.now();
-    return startTimeMs;
+function resumeTime (){
+    resumedTimeMS = Date.now();
+    return resumedTimeMS;
 }
 
 function startButton() {
   if (running !== true){
     clearInterval(intervalStartStop);
-    if (firstStart === 0) {
-        firstStartTimer ();
+    if (initialTimeMS === 0) {
+        startTime ();
     } else {
-        getStartTime ()
-        timeGone += startTimeMs - stopTimeMs;
+        resumeTime ()
+        timeGone += resumedTimeMS - stoppedTimeMS;
     }
 
     intervalStartStop = setInterval(function() {
@@ -51,11 +51,11 @@ function startButton() {
 }
 
 function getStopTime(){
-  stopTimeMs = Date.now();
-  return stopTimeMs;
+  stoppedTimeMS = Date.now();
+  return stoppedTimeMS;
 }
 
-function stopButton() {
+function pauseTime() {
     clearInterval(intervalStartStop);
     getStopTime();
     running = false;
@@ -64,7 +64,7 @@ function stopButton() {
 
 button_start.addEventListener('click', startButton);
 button_reset.addEventListener('click', resetButton);
-button_stop.addEventListener('click', stopButton);
+button_stop.addEventListener('click', pauseTime);
 
 function getCurrentTime(){
   currentTimeMs = Date.now();
@@ -73,7 +73,7 @@ function getCurrentTime(){
 
 function startTimer() {
     getCurrentTime();
-    var timeDiff = (currentTimeMs - (firstStart + timeGone)) > 0 ? (currentTimeMs - (firstStart + timeGone)) : ((firstStart + timeGone) - currentTimeMs);
+    var timeDiff = (currentTimeMs - (initialTimeMS + timeGone)) > 0 ? (currentTimeMs - (initialTimeMS + timeGone)) : ((initialTimeMS + timeGone) - currentTimeMs);
     toReadable(timeDiff);
     return timeDiff;
 }
