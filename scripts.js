@@ -1,15 +1,15 @@
-(function(window){
+
 var   timeDisplay = document.getElementById('timeDisplay');
-      button_start = document.getElementById('button_start');
-      button_reset = document.getElementById('button_reset');
-      button_stop = document.getElementById('button_stop');
-      currentTimeMs = 0;
-      stopTimeMs = 0;
-      firstStart = 0
-      startTimeMs = 0;
-      timeGone = 0;
-      intervalStartStop = 0;
-      running = false;
+var  button_start = document.getElementById('button_start');
+var  button_reset = document.getElementById('button_reset');
+var  button_stop = document.getElementById('button_stop');
+var  currentTimeMs = 0;
+var  stopTimeMs = 0
+var  firstStart = 0;
+var  startTimeMs = 0;
+var  timeGone = 0;
+var  intervalStartStop = 0;
+var  running = false;
 
 function resetButton() {
     clearInterval(intervalStartStop);
@@ -89,7 +89,6 @@ function toReadable(timeDiff){
     timeDisplay.innerHTML = hours + ':' + mins + ':' + sec + ':' + ms2sf;
 };
 
-})(window)
 
 // var d = new Date();
 // (d.getHours()*60*60*1000) + (d.getMinutes()*60*1000) + (d.getSeconds()*1000) + d.getMilliseconds();
