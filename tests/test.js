@@ -59,13 +59,6 @@ QUnit.test('When startTimer is run, timeDiff is > -1', function(){
     ok(startTimer(), 'timeDiff is > -1')
 });
 
-QUnit.test('toReadable should return ms2sf should have a length of 2', function(assert) {
-  var expected = 2;
-  var result = toReadable();
-  assert.equal(result, expected, 'ms2sf has a length of 2');
-});
-
-
 QUnit.test( "When startButton is run, startTimeMs should equal 0", function( assert ) {
   var done = assert.async();
   startButton();
@@ -73,4 +66,10 @@ QUnit.test( "When startButton is run, startTimeMs should equal 0", function( ass
     assert.ok(startTimeMs === 0);
     done();
   },10);
+});
+
+QUnit.test('toReadable should return ms2sf should have a length of 2', function(assert) {
+  var expected = 2;
+  var result = toReadable();
+  assert.equal(result, expected, 'ms2sf has a length of 2');
 });
